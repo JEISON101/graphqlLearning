@@ -35,28 +35,6 @@ POST http://localhost:3333/graphql
 | [`database/schema.ts`](database/schema.ts) | Define el schema Lucid de la tabla de usuarios para la capa de base de datos. |
 
 ## Flujo de una peticion
-
-```mermaid
-sequenceDiagram
-    C as Cliente
-    R as AdonisJS Router
-    G as GraphqlController
-    Y as GraphQL Yoga
-    S as schema.ts
-    D as Datos en memoria
-
-    C->>R: POST /graphql + JSON { query }
-    R->>G: handle(context)
-    G->>G: Lee metodo, URL, headers y body
-    G->>Y: yoga.fetch(url, request)
-    Y->>S: Valida query contra typeDefs
-    S->>D: Ejecuta el resolver seleccionado
-    D-->>S: Resultado
-    S-->>Y: Datos con forma solicitada
-    Y-->>G: Respuesta GraphQL
-    G-->>C: JSON { data } o { errors }
-```
-
 ### 1. Ruta: `start/routes.ts`
 
 La ruta es el primer punto de entrada:
